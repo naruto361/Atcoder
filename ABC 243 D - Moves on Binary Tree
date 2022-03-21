@@ -1,0 +1,58 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define yes  cout<<"yes\n";
+#define no   cout<<"no\n";
+#define YES  cout<<"YES\n";
+#define NO   cout<<"NO\n";
+#define ll   long long
+#define pb   push_back
+#define mod  1000000007
+#define nl   cout<<'\n';
+#define ff   first
+#define ss   second
+#define vi   vector<int>
+#define vll  vector<ll>
+#define vc   vector<char>
+#define file_write freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+#define loop1(m)   for(int i=0;i<m;i++) 
+#define loop2(n,m) for(auto i=n;i<=m;i++)
+#define count1s(n) __builtin_popcount(n)
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+vi dx={0,-1,0,1};
+vi dy={1,0,-1,0};
+int main()
+{
+    int l;
+    ll node;
+    cin>>l>>node;
+    string s;
+    cin>>s;
+    deque<char> q;
+    q.push_back(s[0]);
+    for(int i=1;i<l;i++)
+    {
+        if(s[i]=='U')
+        {
+            if(q.size()>0 && q.back()!='U')
+            {
+                q.pop_back();
+            }
+            else q.push_back(s[i]); 
+        }
+        else q.push_back(s[i]);
+    }
+    for(auto &c:q)
+    {
+        if(c=='U')
+        {
+            node/=2;
+        }
+        else
+        {
+            node*=2;
+            if(c=='R') ++node;
+        }
+    }
+    cout<<node;
+}
+    
