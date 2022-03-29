@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define yes  cout<<"yes\n";
+#define no   cout<<"no\n";
+#define YES  cout<<"YES\n";
+#define NO   cout<<"NO\n";
+#define ll   long long
+#define pb   push_back
+#define mod  1000000007
+#define nl   cout<<'\n';
+#define ff   first
+#define ss   second
+#define vi   vector<int>
+#define vll  vector<ll>
+#define vc   vector<char>
+#define file_write freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+#define loop1(m)   for(int i=0;i<m;i++) 
+#define loop2(n,m) for(auto i=n;i<=m;i++)
+#define count1s(n) __builtin_popcount(n)
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+vi dx={0,-1,0,1};
+vi dy={1,0,-1,0};
+int main()
+{
+    int t;
+    t=1;
+    //cin>>t;
+    while(t--)
+    {
+        ll n;
+        cin>>n;
+        int k;cin>>k;
+        vi a(n) , b(n);
+        loop1(n) cin>>a[i];
+        loop1(n) cin>>b[i];
+        vector<bool> dp1(n,false) , dp2(n,false);
+        dp1[0] = true ; 
+        dp2[0] = true ;
+        for(int i=1;i<n;i++)
+        {
+            int x1=abs(a[i]-a[i-1]);
+            if(x1<=k && dp1[i-1]) dp1[i]=true;
+
+            int x2=abs(a[i]-b[i-1]);
+            if(x2<=k && dp2[i-1]) dp1[i]=true;
+
+            int y1=abs(b[i]-b[i-1]);
+            if(y1<=k && dp2[i-1]) dp2[i]=true;
+
+            int y2=abs(b[i]-a[i-1]);
+            if(y2<=k && dp1[i-1]) dp2[i]=true;
+
+            if(!dp1[i] && !dp2[i])
+            {
+                cout<<"No";
+                return 0;
+            }
+        }
+        cout<<"Yes";
+    }
+}
+    
