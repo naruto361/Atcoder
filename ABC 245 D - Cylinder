@@ -1,0 +1,72 @@
+#include <bits/stdc++.h>
+using namespace std;
+#define yes  cout<<"yes\n";
+#define no   cout<<"no\n";
+#define YES  cout<<"YES\n";
+#define NO   cout<<"NO\n";
+#define ll   long long
+#define pb   push_back
+#define mod  1000000007
+#define nl   cout<<'\n';
+#define ff   first
+#define ss   second
+#define vi   vector<int>
+#define vll  vector<ll>
+#define vc   vector<char>
+#define file_write freopen("input.txt", "r", stdin);freopen("output.txt", "w", stdout);
+#define loop1(m)   for(int i=0;i<m;i++) 
+#define loop2(n,m) for(auto i=n;i<=m;i++)
+#define count1s(n) __builtin_popcount(n)
+#define fast ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL);
+vi dx={0,-1,0,1};
+vi dy={1,0,-1,0};
+bool sortbyfunc(pair<double,double> &a,pair<double,double> &b)
+{
+    if(a.second==b.second) return a.first>b.first;
+    return a.second<b.second;
+}
+int main()
+{
+    int t;
+    t=1;
+    //cin>>t;
+    while(t--)
+    {
+        int n;
+        cin>>n;
+        deque<pair<ll,ll>> dq;
+        while(n--)
+        {
+            int type;
+            cin>>type;
+            if(type==1)
+            {
+                ll x,c;cin>>x>>c;
+                if(!dq.empty() && x==dq.back().first) dq.back().second+=x;
+                else dq.push_back({x,c});
+            }
+            else
+            {
+                ll c;cin>>c;
+                ll ans=0;
+                while(!dq.empty() && c>0)
+                {
+                    ll p=dq.front().second;
+                    if(p<=c)
+                    {
+                        ans += dq.front().first*dq.front().second;
+                        c-=p;
+                        dq.pop_front();
+                    }
+                    else
+                    {
+                        ans += dq.front().first*c;
+                        dq.front().second-=c;c=0;
+                    }
+                }
+                cout<<ans<<'\n';
+            }
+        }
+    }
+}
+    
